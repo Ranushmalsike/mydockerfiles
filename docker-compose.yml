@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  # web_jayani:
+  #   build: .
+  #   ports:
+  #     - "8000:80"
+  #   volumes:
+  #     - /run/media/rrm/632e09ee-1e29-416a-9620-30d046289e2c/project/jayani/:/var/www/html/
+  #   depends_on:
+  #     - mysql
+      
+  # my_project:
+  #   build: .
+  #   ports:
+  #     - "8002:80"
+  #   volumes:
+  #     - /run/media/rrm/632e09ee-1e29-416a-9620-30d046289e2c/project/Myproject/:/var/www/html/
+  #   depends_on:
+  #     - mysql
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "9000:80"
